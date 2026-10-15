@@ -331,7 +331,8 @@
       "dependsOn": ["prepare", "typecheck:cloud"]
     },
     "typecheck:cloud": {
-      "command": "tsc -p functions/tsconfig.json",
+      "command": "tsc -b functions/tsconfig.json",
+      "dependsOn": ["^prepare", "prepare"],
       "options": {
         "cwd": "{projectRoot}"
       },

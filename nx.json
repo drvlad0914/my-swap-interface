@@ -14,8 +14,7 @@
   },
   "targetDefaults": {
     "prepare": {
-      "cache": true,
-      "syncGenerators": ["@universe/uniswap-nx:tsconfig-sync"]
+      "cache": true
     },
     "config:pull": {
       "dependsOn": ["^prepare"],
@@ -39,7 +38,6 @@
       "options": {
         "cwd": "{projectRoot}"
       },
-      "syncGenerators": ["@universe/uniswap-nx:tsconfig-sync"],
       "dependsOn": ["^prepare", "prepare"],
       "inputs": [
         "{workspaceRoot}/package.json",
@@ -198,10 +196,6 @@
     "appsDir": "apps",
     "libsDir": "packages"
   },
-  "sync": {
-    "applyChanges": true,
-    "globalGenerators": ["@universe/uniswap-nx:tsconfig-sync"]
-  },
   "parallel": 6,
   "defaultProject": "@universe/web",
   "generators": {
@@ -213,7 +207,7 @@
   "plugins": [],
   "pluginsConfig": {
     "@nx/js": {
-      "// analyzeSourceFiles": "Off because typescript >= 7 (tsgo) ships no classic compiler API for nx's TS source-dependency analysis (require('typescript') resolves to a version-only stub since 7.0.2, and threw under 7.0.1-rc), so the analysis has been inoperative since the TS 7 upgrade; project deps come from package.json analysis + the tsconfig sync generator. Flipping this to true under TS 7 crashes every nx command (readConfigFile is not a function).",
+      "// analyzeSourceFiles": "Off because typescript >= 7 (tsgo) ships no classic compiler API for nx's TS source-dependency analysis (require('typescript') resolves to a version-only stub since 7.0.2, and threw under 7.0.1-rc), so the analysis has been inoperative since the TS 7 upgrade; project deps come from package.json analysis and checked-in tsconfig references. Flipping this to true under TS 7 crashes every nx command (readConfigFile is not a function).",
       "analyzeSourceFiles": false
     }
   }
