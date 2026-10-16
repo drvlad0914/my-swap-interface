@@ -2,17 +2,18 @@ import { Flex, Text } from '@universe/mycelium'
 import { ENTER_PRESET_CLASSES } from '@universe/mycelium/compat'
 import { RotatableChevron } from '@universe/mycelium/icons/RotatableChevron'
 import { useMedia, useSporeColors } from '@universe/mycelium/theme-hooks-compat'
-import { Fragment, useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 import { INTERFACE_NAV_HEIGHT } from 'ui/src/theme'
 import { useEnabledChains } from 'uniswap/src/features/chains/hooks/useEnabledChains'
 import { SwapRedirectFn } from 'uniswap/src/features/transactions/components/TransactionModal/TransactionModalContext'
 import { useCurrency } from '~/hooks/Tokens'
-import { Hover, RiseIn, RiseInText } from '~/pages/Landing/components/animations'
+import { Hover, RiseIn } from '~/pages/Landing/components/animations'
 import { TokenCloud } from '~/pages/Landing/components/TokenCloud'
 import { useScrollParallax } from '~/pages/Landing/sections/useScrollParallax'
 import { Swap } from '~/pages/Swap'
+import { FrogSwapScene } from '~/pages/Swap/FrogSwapScene'
 import { serializeSwapStateToURLParameters } from '~/pages/Swap/Swap/state/tradeQueryParams'
 
 interface HeroProps {
@@ -47,30 +48,14 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
     [navigate],
   )
 
-  const renderRiseInText = useMemo(() => {
-    return t('hero.swap.title')
-      .split(/(<br\/>)|\s+/)
-      .filter(Boolean) // splits the string by spaces but also captures "<br/>" as a separate element in the array
-      .map((word, index) => {
-        if (word === '<br/>') {
-          return <br key={`${index}-${word}-br`} />
-        } else {
-          return (
-            <Fragment key={`${index}-${word}`}>
-              <RiseInText delay={index * 0.1}>{word}</RiseInText>{' '}
-            </Fragment>
-          )
-        }
-      })
-  }, [t])
-
   return (
     <Flex
       ref={outerRef}
       position="relative"
       justifyContent="center"
+      width="100%"
       minWidth="100%"
-      className="min-h-screen supports-[height:100svh]:min-h-svh"
+      className="pond-landing-hero min-h-screen supports-[height:100svh]:min-h-svh"
       height="min-content"
       pt={INTERFACE_NAV_HEIGHT}
       pointerEvents="none"
@@ -80,7 +65,9 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
       <Flex
         ref={innerRef}
         alignSelf="center"
-        maxWidth="85vw"
+        width="100%"
+        maxWidth="100%"
+        alignItems="center"
         pointerEvents="none"
         pt={48}
         gap="$gap20"
@@ -90,41 +77,28 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
           transition: transition ? 'shrinkAndFade 1s ease-in-out forwards' : undefined,
         }}
       >
-        <Flex maxWidth={920} alignItems="center" pointerEvents="none">
-          <Text
-            variant="heading1"
-            fontSize={64}
-            lineHeight={76}
-            textAlign="center"
-            fontWeight="$book"
-            $md={{ fontSize: 52 }}
-            $sm={{ variant: 'heading2', fontSize: 36 }}
-            $short={{ variant: 'heading2', fontSize: 36 }}
-          >
-            {renderRiseInText}
-          </Text>
-        </Flex>
-
-        <RiseIn delay={0.4}>
-          <Flex
-            pointerEvents="auto"
-            width={480}
-            p="$padding8"
-            borderRadius="$rounded24"
-            backgroundColor="$surface1"
-            maxWidth="100%"
-            className={ENTER_PRESET_CLASSES.fadeIn}
-          >
-            <Swap
-              hideHeader
-              hideFooter
-              syncTabToUrl={false}
-              initialInputChainId={defaultChainId}
-              initialInputCurrency={initialInputCurrency}
-              swapRedirectCallback={swapRedirectCallback}
-            />
-          </Flex>
-        </RiseIn>
+        <FrogSwapScene>
+          <RiseIn delay={0.4}>
+            <Flex
+              pointerEvents="auto"
+              width={480}
+              p="$padding8"
+              borderRadius="$rounded24"
+              backgroundColor="$surface1"
+              maxWidth="100%"
+              className={ENTER_PRESET_CLASSES.fadeIn}
+            >
+              <Swap
+                hideHeader
+                hideFooter
+                syncTabToUrl={false}
+                initialInputChainId={defaultChainId}
+                initialInputCurrency={initialInputCurrency}
+                swapRedirectCallback={swapRedirectCallback}
+              />
+            </Flex>
+          </RiseIn>
+        </FrogSwapScene>
 
         <RiseIn delay={0.3}>
           <Text variant="body1" textAlign="center" maxWidth={430} color="$neutral2" $short={{ variant: 'body2' }}>
@@ -156,6 +130,7 @@ export function Hero({ scrollToRef, transition }: HeroProps) {
             onPress={() => scrollToRef()}
             cursor="pointer"
             width={500}
+            maxWidth="100%"
           >
             <Hover>
               <Flex width="100%" alignItems="center">

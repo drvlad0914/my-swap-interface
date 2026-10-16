@@ -46,7 +46,7 @@ export function ValuePropCard(props: ValuePropCardProps) {
       onPress={handleClick}
       // textDecoration has no FlexCompat prop equivalent; className is the sanctioned long-tail fallback.
       // Merged with the consumer's className so a passed-in one doesn't replace it via {...rest}.
-      className={cn('no-underline', className)}
+      className={cn('no-underline pond-feature-card', className)}
       $lg={{
         maxWidth: '100%',
         height: 'auto',

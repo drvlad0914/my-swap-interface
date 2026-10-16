@@ -1,0 +1,254 @@
+/* Web-only pond palette. Shared mobile packages retain their original theme. */
+body.pond-theme {
+  --pond-ink: #182c19;
+  --pond-green: #b9df79;
+  --pond-deep: #79ac52;
+  --pond-frog: #6cbd49;
+  --pond-lime: #c9ef79;
+  --pond-yellow: #ffe265;
+  --pond-cream: #fff8c5;
+  --pond-peach: #f9a66c;
+  --pond-font: "Trebuchet MS", Arial, sans-serif;
+  --surface1: var(--pond-yellow);
+  --surface1-hovered: #ffdc48;
+  --surface2: var(--pond-cream);
+  --surface2-hovered: #f5e9a0;
+  --surface3: #d3bc65;
+  --surface3-hovered: #c7aa47;
+  --surface3-solid: #ead076;
+  --surface4: #e2cc83;
+  --neutral1: var(--pond-ink);
+  --neutral1-hovered: #314a28;
+  --neutral1-contrast: var(--pond-cream);
+  --neutral2: #435639;
+  --neutral2-hovered: var(--pond-ink);
+  --neutral3: #5f704d;
+  --accent1: var(--pond-ink);
+  --accent1-hovered: #314a28;
+  --accent2: var(--pond-lime);
+  --accent2-hovered: #b5db66;
+  --accent2-solid: var(--pond-lime);
+  --accent3: var(--pond-ink);
+  --accent3-hovered: #314a28;
+  --background: var(--pond-green);
+  --foreground: var(--pond-ink);
+  --border: var(--pond-ink);
+  --ring: var(--pond-deep);
+  --stext-font-book: var(--pond-font);
+  --stext-font-medium: var(--pond-font);
+  --sbtn-font-button: var(--pond-font);
+  --stext-neutral1: var(--pond-ink);
+  --stext-neutral1Contrast: var(--pond-cream);
+  --stext-neutral1Hovered: #314a28;
+  --stext-neutral2: #435639;
+  --stext-neutral2Hovered: var(--pond-ink);
+  --stext-neutral3: #5f704d;
+  --stext-accent1: var(--pond-ink);
+  --stext-accent1Hovered: #314a28;
+  --stext-accent2: var(--pond-lime);
+  --stext-accent2Solid: var(--pond-lime);
+  --stext-accent3: var(--pond-ink);
+  --stext-surface1: var(--pond-yellow);
+  --stext-surface2: var(--pond-cream);
+  --stext-background: var(--pond-green);
+  background: var(--pond-green);
+  background-image: radial-gradient(#182c1912 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--pond-ink);
+  font-family: var(--pond-font);
+}
+
+body.pond-theme #background-radial-gradient {
+  background: none;
+}
+body.pond-theme :is(h1, h2, h3, h4) {
+  font-family: var(--pond-font);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+body.pond-theme :is(button, input, textarea, select) {
+  font-family: var(--pond-font);
+}
+body.pond-theme :is([class*="heading"], [class*="subheading"]) {
+  font-weight: 800;
+}
+
+body.pond-theme #AppHeader {
+  border-bottom: 2px solid var(--pond-ink);
+}
+body.pond-theme #AppHeader > :last-child,
+body.pond-theme nav {
+  background: var(--pond-green) !important;
+}
+body.pond-theme nav {
+  border-bottom: 0;
+}
+body.pond-theme nav :is(a, button) {
+  font-weight: 800;
+}
+body.pond-theme nav [aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 7px;
+}
+.pond-nav-mark {
+  width: 37px;
+  height: 42px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pond-nav-mark .pond-pal {
+  width: 37px;
+  height: 42px;
+}
+
+/* The same surfaces and outlines cover route-specific cards and shared controls. */
+body.pond-theme :is(.bg-surface1, .bg-surface2)[class*="rounded-"] {
+  border: 2px solid var(--pond-ink);
+}
+body.pond-theme
+  :is(.border-surface3, .border-surface3-solid)[class*="rounded-"] {
+  border-color: var(--pond-ink);
+  border-width: 2px;
+}
+body.pond-theme [class~="group/sbtn"] {
+  border: 2px solid var(--pond-ink);
+  box-shadow: 3px 3px 0 var(--pond-ink);
+  font-weight: 800;
+}
+body.pond-theme [class~="group/sbtn"]:active {
+  box-shadow: 1px 1px 0 var(--pond-ink);
+}
+body.pond-theme
+  :is(input, textarea):not([inputmode="decimal"]):not([type="hidden"]):not(
+    [type="checkbox"]
+  ):not([type="radio"]):not([type="range"]) {
+  background-color: var(--pond-cream);
+  color: var(--pond-ink);
+  border-color: var(--pond-ink);
+}
+body.pond-theme input::placeholder {
+  color: #63734d;
+  opacity: 1;
+}
+body.pond-theme :focus-visible {
+  outline: 3px solid #296c38;
+  outline-offset: 3px;
+}
+
+body.pond-theme :is([role="dialog"], [role="menu"], [role="listbox"]) {
+  --surface1: var(--pond-cream);
+  --surface2: #ffed9b;
+  background-color: var(--pond-cream);
+  border: 3px solid var(--pond-ink);
+  box-shadow: 7px 7px 0 var(--pond-ink);
+}
+body.pond-theme [role="tablist"] [aria-selected] {
+  position: relative;
+  z-index: 11;
+  font-weight: 800;
+}
+body.pond-theme [role="tablist"] [aria-selected] * {
+  color: var(--pond-ink) !important;
+  font-weight: 800;
+}
+body.pond-theme [role="tablist"] [aria-selected="true"] {
+  border-radius: 100px;
+}
+body.pond-theme :is(table, [role="table"], [role="grid"]) {
+  background: var(--pond-cream);
+  border: 2px solid var(--pond-ink);
+  border-radius: 20px;
+}
+body.pond-theme :is(th, [role="columnheader"]) {
+  font-weight: 800;
+}
+body.pond-theme :is(tbody tr, [role="row"]):hover {
+  background-color: #d6ed9c;
+}
+
+/* Landing keeps its existing product links, token cloud, and below-the-fold content. */
+body.pond-theme .pond-landing-hero {
+  padding-top: 108px;
+  background-color: var(--pond-green);
+}
+body.pond-theme .pond-landing-hero > :nth-child(2) {
+  padding-top: 0;
+}
+body.pond-theme .pond-landing-hero .pond-swap-card {
+  pointer-events: auto;
+}
+body.pond-theme .pond-feature-card {
+  background: var(--pond-yellow) !important;
+  border: 3px solid var(--pond-ink);
+  box-shadow: 6px 6px 0 var(--pond-ink);
+}
+body.pond-theme .pond-feature-card:nth-child(even) {
+  background: var(--pond-cream) !important;
+}
+body.pond-theme .pond-feature-card :is(h1, h2, h3) {
+  color: var(--pond-ink);
+}
+body.pond-theme .pond-feature-card:hover {
+  transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+  body.pond-theme .pond-landing-hero {
+    padding-top: 98px;
+  }
+  body.pond-theme :is([role="dialog"], [role="menu"], [role="listbox"]) {
+    box-shadow: 4px 4px 0 var(--pond-ink);
+  }
+  body.pond-theme .pond-feature-card {
+    box-shadow: 4px 4px 0 var(--pond-ink);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.pond-theme .pond-feature-card:hover {
+    transform: none;
+  }
+}
+
+/* Route shells provide one consistent card around exploration and management screens. */
+body.pond-theme:not(:has(.frog-swap-page)):not(
+    :has([data-testid="landing-page"])
+  )
+  .pond-route-shell {
+  width: calc(100vw - 64px);
+  min-width: 0;
+  margin: 28px auto 40px;
+  padding: 24px;
+  border: 3px solid var(--pond-ink);
+  border-radius: 28px;
+  background: var(--pond-yellow);
+  box-shadow: 8px 8px 0 var(--pond-ink);
+}
+@media (max-width: 600px) {
+  body.pond-theme:not(:has(.frog-swap-page)):not(
+      :has([data-testid="landing-page"])
+    )
+    .pond-route-shell {
+    width: calc(100vw - 24px);
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 22px;
+    box-shadow: 5px 5px 0 var(--pond-ink);
+  }
+}
+
+body.pond-theme .pond-landing-hero {
+  padding-bottom: 110px;
+}
+body.pond-theme .frog-scene {
+  min-width: 0;
+  max-width: 100%;
+}
+body.pond-theme .pond-landing-hero .landing-rise-in {
+  min-width: 0;
+  max-width: 100%;
+}
+@media (max-width: 600px) {
+  body.pond-theme .pond-landing-hero .frog-scene {
+    padding-inline: 16px;
+  }
+}

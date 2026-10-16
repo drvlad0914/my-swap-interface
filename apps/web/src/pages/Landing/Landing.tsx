@@ -31,7 +31,14 @@ function LandingInner({ transition }: { transition?: boolean }) {
   }
 
   return (
-    <Flex position="relative" alignItems="center" mt={-INTERFACE_NAV_HEIGHT} minWidth="100vw" testID="landing-page">
+    <Flex
+      position="relative"
+      alignItems="center"
+      mt={-INTERFACE_NAV_HEIGHT}
+      width="100vw"
+      maxWidth="100vw"
+      testID="landing-page"
+    >
       <Grain />
       <Hero scrollToRef={scrollToRef} transition={transition} />
       <Suspense>

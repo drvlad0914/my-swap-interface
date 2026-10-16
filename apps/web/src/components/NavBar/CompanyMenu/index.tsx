@@ -8,10 +8,10 @@ import { ArrowChange } from 'ui/src/components/icons/ArrowChange'
 import { Hamburger } from 'ui/src/components/icons/Hamburger'
 import { ElementName } from 'uniswap/src/features/telemetry/constants'
 import Trace from 'uniswap/src/features/telemetry/Trace'
-import { NavIcon } from '~/components/Logo/NavIcon'
 import { MenuDropdown } from '~/components/NavBar/CompanyMenu/MenuDropdown'
 import { MobileMenuDrawer } from '~/components/NavBar/CompanyMenu/MobileMenuDrawer'
 import { useIsMobileDrawer, useTabsVisible } from '~/components/NavBar/ScreenSizes'
+import { PondPal } from '~/pages/Swap/FrogSwapScene'
 
 function ArrowDownWrapper({ open, ...rest }: TextCompatProps & { open?: boolean }): JSX.Element {
   // Resolves against the `group` marker on the wrapping Popover.Trigger Flex below, not this element.
@@ -50,12 +50,19 @@ export function CompanyMenu() {
           $platform-web={{ containerType: 'normal' }}
         >
           <Trace logPress element={ElementName.NavbarCompanyMenuLogo}>
-            <Link to="/?intro=true" onClick={(e) => e.stopPropagation()} style={{ textDecoration: 'none' }}>
+            <Link
+              to="/?intro=true"
+              aria-label="Pond Swap home"
+              onClick={(e) => e.stopPropagation()}
+              style={{ textDecoration: 'none' }}
+            >
               <Flex row alignItems="center" gap="$gap4" data-testid={TestID.NavUniswapLogo}>
-                <NavIcon />
+                <Flex className="pond-nav-mark">
+                  <PondPal />
+                </Flex>
                 {isLargeScreen && (
                   <Text variant="subheading1" color="$accent1" userSelect="none">
-                    Uniswap
+                    Pond Swap
                   </Text>
                 )}
               </Flex>

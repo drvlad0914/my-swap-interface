@@ -2,7 +2,7 @@ import '~/pages/Swap/frog-swap.css'
 import { Flex } from '@universe/mycelium'
 import type { PropsWithChildren } from 'react'
 
-function PondPal(): JSX.Element {
+export function PondPal(): JSX.Element {
   return (
     <svg viewBox="0 0 300 310" aria-hidden="true" className="pond-pal">
       <ellipse cx="150" cy="282" rx="137" ry="21" fill="var(--pond-deep)" />

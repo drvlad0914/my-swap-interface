@@ -1,3 +1,4 @@
+import '~/theme/pond-theme.css'
 import { EXTENSION_PASSKEY_AUTH_PATH } from '@universe/embedded-wallet'
 import { useSporeColors } from '@universe/mycelium/theme-hooks-compat'
 import { useEffect, useLayoutEffect } from 'react'
@@ -74,6 +75,7 @@ export function App() {
           you can set it later in the page component itself, since react-helmet-async prefers the most recently rendered title.
         */}
         <Helmet>
+          <body className="pond-theme" />
           <title>{staticTitle}</title>
           {staticDescription && <meta name="description" content={staticDescription} />}
           {staticDescription && <meta property="og:description" content={staticDescription} />}

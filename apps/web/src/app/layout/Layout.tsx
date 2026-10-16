@@ -31,7 +31,7 @@ export function AppLayout({
   return (
     <AppContainer>
       <Header />
-      <AppBody>
+      <AppBody className="pond-route-shell">
         <Body embedded={embedded} embedView={embedView} />
       </AppBody>
     </AppContainer>
