@@ -8,7 +8,7 @@ import { Flex, Text } from '@universe/mycelium'
 import { FlexCompat, type FlexCompatProps } from '@universe/mycelium/flex-compat'
 import type { SegmentedControlOption } from '@universe/mycelium/segmented-control-compat'
 import { useMedia } from '@universe/mycelium/theme-hooks-compat'
-import { forwardRef, useCallback, useEffect, useMemo, useState } from 'react'
+import { Fragment, forwardRef, useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router'
 import { stackingLayerAbove, Tooltip, WidthAnimator } from 'ui/src'
@@ -49,6 +49,7 @@ import { useDeferredComponent } from '~/hooks/useDeferredComponent'
 import { PageType, useIsPage } from '~/hooks/useIsPage'
 import { useModalState } from '~/hooks/useModalState'
 import { useEmbedView } from '~/pages/Swap/embedContext'
+import { FrogSwapScene } from '~/pages/Swap/FrogSwapScene'
 import { buildSwapTabOptions, isTabPermissionedBlocked } from '~/pages/Swap/permissionedTabs'
 import { PermissionedTabWrapper } from '~/pages/Swap/PermissionedTabWrapper'
 import { ReturnToAuctionBanner } from '~/pages/Swap/ReturnToAuctionBanner'
@@ -101,22 +102,26 @@ export function SwapPage() {
     }
   }, [accountDrawer, triggerConnect, navigate, location.pathname])
 
+  const SwapScene = capabilities.appChrome ? FrogSwapScene : Fragment
+
   return (
     <Trace logImpression page={InterfacePageName.SwapPage}>
-      <PageWrapper>
-        <WebFORNudgeProvider>
-          <Swap
-            initialInputChainId={initialInputChainId}
-            initialInputCurrency={initialInputCurrency}
-            initialOutputCurrency={initialOutputCurrency}
-            initialOutputChainId={initialOutputChainId}
-            initialTypedValue={initialTypedValue}
-            initialIndependentField={initialField}
-            hideHeader={!capabilities.header}
-            hideChart={!capabilities.chart}
-            syncTabToUrl={capabilities.syncTabToUrl}
-          />
-        </WebFORNudgeProvider>
+      <PageWrapper className={capabilities.appChrome ? 'frog-swap-page' : undefined}>
+        <SwapScene>
+          <WebFORNudgeProvider>
+            <Swap
+              initialInputChainId={initialInputChainId}
+              initialInputCurrency={initialInputCurrency}
+              initialOutputCurrency={initialOutputCurrency}
+              initialOutputChainId={initialOutputChainId}
+              initialTypedValue={initialTypedValue}
+              initialIndependentField={initialField}
+              hideHeader={!capabilities.header}
+              hideChart={!capabilities.chart}
+              syncTabToUrl={capabilities.syncTabToUrl}
+            />
+          </WebFORNudgeProvider>
+        </SwapScene>
       </PageWrapper>
       {capabilities.appChrome ? (
         <ReturnToAuctionBanner />

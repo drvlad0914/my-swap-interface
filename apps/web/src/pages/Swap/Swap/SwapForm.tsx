@@ -63,7 +63,7 @@ export function SwapForm({
   const isSwapPage = useIsPage(PageType.SWAP)
 
   return (
-    <Flex gap="$spacing16">
+    <Flex className="frog-swap-form" gap="$spacing16">
       <SwapDependenciesStoreContextProvider swapHandlers={swapHandlers}>
         <SwapFlow
           settings={swapSettings}
