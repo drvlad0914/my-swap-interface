@@ -10,6 +10,11 @@ function isAppUniswapStagingOrg({ hostname }: { hostname: string }): boolean {
 }
 
 export function isBrowserRouterEnabled(): boolean {
+  // Vercel serves deep links through the SPA function, including on fork/custom domains.
+  // Keep hash routing for IPFS builds, which do not provide those rewrites.
+  if (getConfig().webBuildType === 'vercel') {
+    return true
+  }
   if (isProdEnv()) {
     if (
       isAppUniswapOrg(window.location) ||
